@@ -1,14 +1,14 @@
-import { LoadingButton } from '@mui/lab';
-import { Stack, styled } from '@mui/material';
+import { LoadingButton } from "@mui/lab";
+import { Stack, styled } from "@mui/material";
 
-import { ICActionsFormProps } from './types';
+import { ICActionsFormProps } from "./types";
 
 const StyledFormButton = styled(LoadingButton)(() => ({
-  borderRadius: '10px',
-  padding: '12.5px 32px',
+  borderRadius: "10px",
+  padding: "12.5px 32px",
   fontWeight: 500,
   fontSize: 16,
-  lineHeight: '19px',
+  lineHeight: "19px",
 }));
 
 export const CActionsForm: React.FC<ICActionsFormProps> = ({
@@ -25,7 +25,7 @@ export const CActionsForm: React.FC<ICActionsFormProps> = ({
         type="button"
         onClick={onCancel}
       >
-        CANCEL
+        Huỷ
       </StyledFormButton>
       <StyledFormButton
         id="submit"
@@ -35,7 +35,7 @@ export const CActionsForm: React.FC<ICActionsFormProps> = ({
         loading={isSubmitting}
         onClick={onSubmit}
       >
-        SAVE
+        Lưu
       </StyledFormButton>
     </Stack>
   );

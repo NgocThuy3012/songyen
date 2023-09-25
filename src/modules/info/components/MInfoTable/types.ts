@@ -1,7 +1,7 @@
-import { IGetCustomersResponse } from '@/types/customers';
+import { IGetInfoResponse } from "@/types/info";
 
-export interface IMCustomersTableProps {
-  data: IGetCustomersResponse[];
+export interface IMInfoTableProps {
+  data: IGetInfoResponse[];
 
   onEdit: (id: string) => void;
 

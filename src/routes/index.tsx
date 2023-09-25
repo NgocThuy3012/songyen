@@ -1,50 +1,43 @@
-import { Outlet, RouteObject } from 'react-router-dom';
+import { Outlet, RouteObject } from "react-router-dom";
 
-import { CExceptionError, CNotFoundError } from '@/errors/';
-import { asyncLayout } from '@/funcs/';
-import { CLoginLayout } from '@/layouts/CLoginLayout';
+import { CExceptionError, CNotFoundError } from "@/errors/";
+import { asyncLayout } from "@/funcs/";
+import { CLoginLayout } from "@/layouts/CLoginLayout";
 
-import { AboutUsRoutes } from './about-us.routes';
-import { CategoryRoutes } from './category.routes';
-import { ConfigRoutes } from './config.routes';
-import { ContactRoutes } from './contact-form.routes';
-import { CustomerRoutes } from './customers.routes';
-import { PageRoutes } from './page.routes';
-import { PostRoutes } from './posts.routes';
-import { UsersRoutes } from './users.routes';
+import { HarvestRoutes } from "./harvest.routes";
+
+import { InfoRoutes } from "./info.routes";
+import { WarehouseRoutes } from "./warehouse.routes";
+import { SalesRoutes } from "./sale.routes";
 
 const routes: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     element: <Outlet />,
     errorElement: <CExceptionError />,
     children: [
       {
-        path: '/',
-        element: asyncLayout(() => import('@/layouts/CMainLayout')),
+        path: "/",
+        element: asyncLayout(() => import("@/layouts/CMainLayout")),
         children: [
           {
-            path: '/dashboard',
+            path: "/dashboard",
             element: <div>Dashboard</div>,
           },
-          ...PageRoutes,
-          ...CategoryRoutes,
-          ...PostRoutes,
-          ...AboutUsRoutes,
-          ...CustomerRoutes,
-          ...ContactRoutes,
-          ...ConfigRoutes,
-          ...UsersRoutes,
+          ...HarvestRoutes,
+          ...WarehouseRoutes,
+          ...InfoRoutes,
+          ...SalesRoutes,
         ],
       },
       {
-        path: '/login',
+        path: "/login",
         element: <CLoginLayout />,
       },
     ],
   },
   {
-    path: '*',
+    path: "*",
     element: <CNotFoundError />,
   },
 ];

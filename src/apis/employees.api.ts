@@ -1,5 +1,5 @@
-import { get, post, put, remove } from '@/axios/request';
-import { formatParams, objectToQueryString } from '@/funcs/';
+import { get, post, put, remove } from "@/axios/request";
+import { formatParams, objectToQueryString } from "@/funcs/";
 import {
   ICreateEmployeeParams,
   IEmptyResponse,
@@ -7,10 +7,10 @@ import {
   IGetEmployeesParams,
   IGetEmployeesResponse,
   IUpdateEmployeeParams,
-} from '@/types/employees';
-import { IApiResponse, IPaginateData } from '@/types/response';
+} from "@/types/sales";
+import { IApiResponse, IPaginateData } from "@/types/response";
 
-import { USERS } from './url';
+import { USERS } from "./url";
 
 // export const getEmployees = (
 //   params: IGetEmployeesParams,
@@ -23,16 +23,11 @@ import { USERS } from './url';
 //   return get(USERS.GET_LIST + '?' + qs);
 // };
 
-export const getEmployees = async (
-  params: IGetEmployeesParams,
-): Promise<
+export const getEmployees = async (): Promise<
   IApiResponse<IPaginateData<IGetEmployeesResponse[]>, any> | IEmptyResponse
 > => {
   try {
-    const formated = formatParams(params);
-    const qs = objectToQueryString(formated);
-
-    const response = await get(USERS.GET_LIST + '?' + qs);
+    const response = await get(USERS.GET_LIST);
 
     return response;
   } catch (error) {
@@ -42,7 +37,7 @@ export const getEmployees = async (
 };
 
 export const getDetailEmployee = (
-  id: string,
+  id: string
 ): Promise<IApiResponse<IGetDetailEmployeeResponse>> => {
   return get(`${USERS.GET_DETAIL}/${id}`);
 };

@@ -1,23 +1,23 @@
-import { stringify } from 'qs';
+import { stringify } from "qs";
 
-import { get, post, put, remove } from '@/axios/request';
-import { formatParams } from '@/funcs/';
+import { get, post, put, remove } from "@/axios/request";
+import { formatParams } from "@/funcs/";
+
+import { IApiResponse, IPaginateData } from "@/types/response";
+
+import { CATEGORIES } from "./url";
 import {
-  ICreateCategoryParams,
-  IGetCategoriesParams,
-  IGetCategoriesResponse,
-  IGetCategoryResponse,
-  IGetDetailCategoryResponse,
-  IGetListCategoriesParams,
-  IUpdateCategoryParams,
-} from '@/types/categories';
-import { IApiResponse, IPaginateData } from '@/types/response';
+  ICreateHarvestParams,
+  IGetDetailHarvestResponse,
+  IGetHarvestParams,
+  IGetHarvestResponse,
+  IGetListHarvestParams,
+  IUpdateHarvestParams,
+} from "@/types/harvest";
 
-import { CATEGORIES } from './url';
-
-export const getCategories = (
-  params: IGetCategoriesParams,
-): Promise<IApiResponse<IPaginateData<IGetCategoriesResponse[]>, any>> => {
+export const getHarvest = (
+  params: IGetHarvestParams
+): Promise<IApiResponse<IPaginateData<IGetHarvestResponse[]>, any>> => {
   const formated = formatParams({
     ...params.input,
     pages: params.pages,
@@ -27,31 +27,31 @@ export const getCategories = (
 
   const qs = stringify(formated);
 
-  return get(CATEGORIES.GET_LIST + '?' + qs);
+  return get(CATEGORIES.GET_LIST + "?" + qs);
 };
 
-export const getListCategories = (
-  params: IGetListCategoriesParams,
-): Promise<IApiResponse<IPaginateData<IGetCategoryResponse[]>, any>> => {
+export const getListHarvest = (
+  params: IGetListHarvestParams
+): Promise<IApiResponse<IPaginateData<IGetHarvestResponse[]>, any>> => {
   const paramsStr = new URLSearchParams(params as any);
 
-  return get(CATEGORIES.GET_LIST + '?' + paramsStr);
+  return get(CATEGORIES.GET_LIST + "?" + paramsStr);
 };
 
-export const deleteCategory = (id: string) => {
+export const deleteHarvest = (id: string) => {
   return remove(`${CATEGORIES.DELETE}/${id}`);
 };
 
-export const createCategory = (body: ICreateCategoryParams) => {
+export const createHarvest = (body: ICreateHarvestParams) => {
   return post(CATEGORIES.CREATE, body);
 };
 
-export const updateCAtegory = (id: string, body: IUpdateCategoryParams) => {
+export const updateHarvest = (id: string, body: IUpdateHarvestParams) => {
   return put(`${CATEGORIES.UPDATE}/${id}`, body);
 };
 
-export const getDetailCategory = (
-  id: string,
-): Promise<IApiResponse<IGetDetailCategoryResponse>> => {
+export const getDetailHarvest = (
+  id: string
+): Promise<IApiResponse<IGetDetailHarvestResponse>> => {
   return get(`${CATEGORIES.GET_DETAIL}/${id}`);
 };

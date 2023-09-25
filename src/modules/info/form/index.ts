@@ -1,20 +1,20 @@
-import { Resolver } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string } from 'yup';
+import { Resolver } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { number, object, string } from "yup";
+import { ICreateInfoParams } from "@/types/info";
 
-import { ICreateCustomerParams } from '@/types/customers';
+export const defaultValuesPost: ICreateInfoParams = {
+  code: "",
 
-export const defaultValuesPost: ICreateCustomerParams = {
-  image_id: '',
-  name: '',
-  url: '',
-  is_public: true,
+  address: "",
+
+  acreage: 0,
 };
 
-export const customerResolver: Resolver<ICreateCustomerParams> = yupResolver(
+export const infoResolver: Resolver<ICreateInfoParams> = yupResolver(
   object({
-    name: string().required('Please enter name!'),
-    image: object().required('Please select image!'),
-    url: string().required('Please enter url!'),
-  }),
+    code: string().required("Vui lòng nhập mã cơ sở!"),
+    address: string().required("Vui lòng nhập địa chỉ!"),
+    acreage: number().required("Vui lòng nhập diện tích!"),
+  })
 );

@@ -1,7 +1,7 @@
-import { Control } from 'react-hook-form';
+import { Control } from "react-hook-form";
 
-import { ICreateCustomerForm } from '@/types/customers';
+import { ICreateInfoForm } from "@/types/info";
 
-export interface IMCustomerFormProps {
-  control: Control<ICreateCustomerForm, any>;
+export interface IMInfoFormProps {
+  control: Control<ICreateInfoForm, any>;
 }

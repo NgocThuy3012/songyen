@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
-import { TextField } from '@mui/material';
+import { forwardRef } from "react";
+import { TextField } from "@mui/material";
 
-import { ICInputProps, ICInputRef } from './types';
+import { ICInputProps, ICInputRef } from "./types";
 
 export const CInput = forwardRef<ICInputRef, ICInputProps>(
   (
@@ -21,7 +21,7 @@ export const CInput = forwardRef<ICInputRef, ICInputProps>(
       sx,
       ...props
     },
-    ref,
+    ref
   ) => {
     return (
       <TextField
@@ -35,7 +35,7 @@ export const CInput = forwardRef<ICInputRef, ICInputProps>(
         placeholder={placeholder}
         type={type}
         sx={{
-          '& .MuiOutlinedInput-root': { backgroundColor: '#F8F8F8' },
+          "& .MuiOutlinedInput-root": { backgroundColor: "#F8F8F8" },
           ...sx,
         }}
         error={error}
@@ -47,9 +47,9 @@ export const CInput = forwardRef<ICInputRef, ICInputProps>(
         {...props}
       />
     );
-  },
+  }
 );
 
 CInput.defaultProps = {
-  type: 'text',
+  type: "text",
 };

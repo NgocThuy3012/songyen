@@ -1,11 +1,11 @@
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 
-import { CActionsTable, CActiveTag, CDataGrid } from '@/others/';
-import { IGetCustomersResponse } from '@/types/customers';
+import { CActionsTable, CActiveTag, CDataGrid } from "@/others/";
 
-import { IMCustomersTableProps } from './types';
+import { IMInfoTableProps } from "./types";
+import { IGetInfoResponse } from "@/types/info";
 
-export const MCustomersTable: React.FC<IMCustomersTableProps> = ({
+export const MInfoTable: React.FC<IMInfoTableProps> = ({
   data,
   loading,
   page,
@@ -18,44 +18,42 @@ export const MCustomersTable: React.FC<IMCustomersTableProps> = ({
   //#region Data
   const columns: GridColDef[] = [
     {
-      field: '__index',
-      headerName: '#',
+      field: "__index",
+      headerName: "#",
       minWidth: 50,
-      headerAlign: 'center',
-      align: 'center',
+      headerAlign: "center",
+      align: "center",
     },
     {
-      field: 'name',
-      headerName: `CUSTOMER'S NAME`,
+      field: "code",
+      headerName: `mã cơ sở`,
       minWidth: 200,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
     },
     {
-      field: 'url',
-      headerName: 'URL',
+      field: "address",
+      headerName: "Địa chỉ",
       minWidth: 500,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
       flex: 1,
     },
     {
-      field: 'is_public',
-      headerName: 'PUBLIC',
-      minWidth: 150,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params: GridRenderCellParams<Boolean>) => (
-        <CActiveTag value={params.value} />
-      ),
+      field: "acreage",
+      headerName: "Diện tích chăn nuôi",
+      minWidth: 200,
+      headerAlign: "left",
+      align: "left",
+      flex: 1,
     },
     {
-      field: 'action',
-      headerName: 'ACTION',
+      field: "action",
+      headerName: "ACTION",
       minWidth: 150,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params: GridRenderCellParams<IGetCustomersResponse>) => (
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<IGetInfoResponse>) => (
         <CActionsTable
           onEdit={() => onEdit(params.row.id)}
           onDelete={() => onDelete(params.row.id)}

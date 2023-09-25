@@ -39,10 +39,10 @@ export const CHeader = ({ toggleSidebar }: ICHeaderProps) => {
         <Box>
           <Typography
             textAlign="center"
-            fontSize="2.5rem"
+            fontSize="2.4rem"
             fontWeight={800}
             color="#1da996"
-            mb={2.5}
+            // mb={2.5}
           >
             SONG YẾN
           </Typography>

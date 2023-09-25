@@ -1,56 +1,29 @@
 export const ROUTES = {
-  LOGIN: '/login',
+  LOGIN: "/login",
 
-  HOME: '/',
+  HOME: "/",
 
-  PAGE: {
-    LIST: '/pages',
-    UPDATE: '/pages/detail/:id',
+  HARVEST: {
+    LIST: "/harvest",
+    UPDATE: "/harvest/detail/:id",
+    CREATE: "/harvest/detail",
   },
 
-  CATEGORY: {
-    LIST: '/category',
-    UPDATE: '/category/detail/:id',
-    CREATE: '/category/detail',
+  WAREHOUSE: {
+    LIST: "/warehouse",
+    CREATE: "/warehouse/detail",
+    UPDATE: "/warehouse/detail/:id",
   },
 
-  POSTS: {
-    LIST: '/posts',
-    CREATE: '/posts/detail',
-    UPDATE: '/posts/detail/:id',
+  INFO: {
+    LIST: "/info",
+    CREATE: "/info/detail",
+    UPDATE: "/info/detail/:id",
   },
 
-  ABOUT_US: {
-    MEMBERS: {
-      LIST: '/about-us/members',
-      CREATE: '/about-us/members/detail',
-      UPDATE: '/about-us/members/detail/:id',
-    },
-
-    FEEDBACKS: {
-      LIST: '/about-us/feedbacks',
-      CREATE: '/about-us/feedbacks/detail',
-      UPDATE: '/about-us/feedbacks/detail/:id',
-    },
-  },
-
-  CUSTOMERS: {
-    LIST: '/customers',
-    CREATE: '/customers/detail',
-    UPDATE: '/customers/detail/:id',
-  },
-
-  CONTACT_FORM: {
-    LIST: '/contact-forms',
-  },
-
-  CONFIG: {
-    INFORMATION: '/config/information',
-    FOOTER: '/config/footer',
-  },
-  USERS: {
-    LIST: '/users',
-    CREATE: '/users/detail',
-    UPDATE: '/users/detail/:id',
+  SALES: {
+    LIST: "/export-sale",
+    CREATE: "/export-sale/detail",
+    UPDATE: "/export-sale/detail/:id",
   },
 };

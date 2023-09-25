@@ -9,25 +9,25 @@ export const NAVIGATIONS: INavigationItem[] = [
     title: "Thông tin nhà yến",
     icon: <InfoIcon />,
     isChildren: false,
-    path: "/customers",
+    path: "/info",
   },
   {
     title: "Thu hoạch",
     icon: <AddchartIcon />,
     isChildren: false,
-    path: "/category",
+    path: "/harvest",
   },
   {
     title: "Kho",
     icon: <WarehouseIcon />,
     isChildren: false,
-    path: "/posts",
+    path: "/warehouse",
   },
 
   {
     title: "Xuất bán",
     icon: <CurrencyExchangeIcon />,
     isChildren: false,
-    path: "/customers",
+    path: "/export-sale",
   },
 ];
