@@ -12,21 +12,6 @@
     "lint:fix": "eslint --fix --ext .tsx --ext .ts src/"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-editor-classic": "^38.0.1",
-    "@ckeditor/ckeditor5-essentials": "^38.0.1",
-    "@ckeditor/ckeditor5-find-and-replace": "^38.0.1",
-    "@ckeditor/ckeditor5-font": "^38.0.1",
-    "@ckeditor/ckeditor5-image": "^38.0.1",
-    "@ckeditor/ckeditor5-indent": "^38.0.1",
-    "@ckeditor/ckeditor5-link": "^38.0.1",
-    "@ckeditor/ckeditor5-list": "^38.0.1",
-    "@ckeditor/ckeditor5-media-embed": "^38.0.1",
-    "@ckeditor/ckeditor5-paragraph": "^38.0.1",
-    "@ckeditor/ckeditor5-react": "^6.0.0",
-    "@ckeditor/ckeditor5-remove-format": "^38.0.1",
-    "@ckeditor/ckeditor5-table": "^38.0.1",
-    "@ckeditor/ckeditor5-upload": "^38.0.1",
-    "@ckeditor/ckeditor5-word-count": "^38.0.1",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.1",
@@ -60,9 +45,6 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-alignment": "^38.0.1",
-    "@ckeditor/ckeditor5-theme-lark": "^38.0.1",
-    "@ckeditor/vite-plugin-ckeditor5": "^0.1.1",
     "@rushstack/eslint-patch": "^1.2.0",
     "@types/node": "^18.11.18",
     "@types/qs": "^6.9.7",

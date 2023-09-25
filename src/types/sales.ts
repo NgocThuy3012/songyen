@@ -34,6 +34,14 @@ export interface ICreateSaleParams {
   weight: number;
 
   plot: string;
+
+  inputDate: Date;
+
+  importLot: string;
+
+  warehousingPerson: string;
+
+  humidity: string;
 }
 
 export interface ICreateSaleForm extends ICreateSaleParams {}

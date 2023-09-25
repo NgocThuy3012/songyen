@@ -31,6 +31,14 @@ export interface ICreateWarehouseForm {
   weight: number;
 
   plot: string;
+
+  inputDate: Date;
+
+  importLot: string;
+
+  warehousingPerson: string;
+
+  humidity: string;
 }
 
 export interface IUpdateBlogParams extends ICreateWarehouseParams {}

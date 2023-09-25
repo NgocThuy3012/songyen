@@ -208,7 +208,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CFormLabel label="Trọng lượng" required />
             <Controller
               control={control}
-              name="acreage"
+              name="weight"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -230,7 +230,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
         <CFormLabel label="Lô nhập" htmlFor="name" required />
         <Controller
           control={control}
-          name="address"
+          name="importLot"
           render={({ field, fieldState: { error } }) => (
             <CInput
               {...field}
@@ -249,7 +249,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CFormLabel label="Người nhập kho" required />
             <Controller
               control={control}
-              name="date"
+              name="warehousingPerson"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -270,7 +270,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CFormLabel label="Độ ẩm" required />
             <Controller
               control={control}
-              name="weight"
+              name="humidity"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}

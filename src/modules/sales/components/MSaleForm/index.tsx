@@ -1,17 +1,16 @@
 import { Controller } from "react-hook-form";
 import { Grid, Stack } from "@mui/material";
 
-import { CFormLabel, CInput, CInputPassword } from "@/controls/";
+import { CFormLabel, CInput } from "@/controls/";
 import { IMSaleFormProps } from "./types";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import { useState } from "react";
-import dayjs from "dayjs";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js
 export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
   //#region Ref
-  const [value, setValue] = useState(null);
+
   //#endregion
 
   //#region Data
@@ -283,7 +282,8 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 />
               )}
             />
-            <DatePicker defaultValue={dayjs("2022-04-17")} />
+
+            {/* <CDate /> */}
           </Stack>
         </Grid>
 
