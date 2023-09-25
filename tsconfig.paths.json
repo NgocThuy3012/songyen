@@ -20,6 +20,7 @@
       "@/constants/*": ["./src/common/constants/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/types/*": ["./src/types/*"],
+      "@/mock/*": ["./src/mock/*"]
     }
   }
 }

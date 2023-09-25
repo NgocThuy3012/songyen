@@ -1,6 +1,7 @@
-import { INavigationItem } from '@/types/navigations';
+import { INavigationItem } from "@/types/navigations";
 
 export interface ICNavItemProps {
   data: INavigationItem;
   index: number;
+  disabled?: boolean;
 }

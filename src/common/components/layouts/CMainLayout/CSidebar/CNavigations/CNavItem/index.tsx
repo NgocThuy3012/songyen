@@ -38,7 +38,11 @@ const style = {
   },
 };
 
-export const CNavItem: React.FC<ICNavItemProps> = ({ data, index }) => {
+export const CNavItem: React.FC<ICNavItemProps> = ({
+  data,
+  index,
+  disabled,
+}) => {
   //#region Data
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -56,6 +60,7 @@ export const CNavItem: React.FC<ICNavItemProps> = ({ data, index }) => {
         sx={style}
         selected={pathname.includes(data.path)}
         onClick={() => navigate(data.path)}
+        disabled={disabled}
       >
         {data?.icon && (
           <ListItemIcon
@@ -84,4 +89,8 @@ export const CNavItem: React.FC<ICNavItemProps> = ({ data, index }) => {
     </Fade>
   );
   //#endregion
+};
+
+CNavItem.defaultProps = {
+  disabled: false,
 };

@@ -4,6 +4,7 @@ export interface INavigationItem {
   path: string;
   icon: React.ReactNode | string;
   children?: IChildNavigationItem[];
+  role: number;
 }
 
 export interface IChildNavigationItem extends INavigationItem {

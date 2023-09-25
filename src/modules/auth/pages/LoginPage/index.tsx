@@ -11,6 +11,7 @@ import { CInput, CInputPassword } from "@/controls/";
 import { defaultValues, loginResolver } from "@/modules/auth/form";
 import { setToken } from "@/slices/auth";
 import { ILoginParams } from "@/types/auth";
+import { auth } from "@/mock/auth";
 
 const LoginPage = () => {
   //#region Data
@@ -26,21 +27,55 @@ const LoginPage = () => {
 
   //#region Event
   const onSubmit = async (values: ILoginParams) => {
-    try {
-      // const res = await login(values);
+    // try {
+    //   const res = await login(values);
 
-      // const { access_token, refresh_token } = res.data.data;
+    //   const { access_token, refresh_token } = res.data.data;
 
-      // dispatch(setToken({ access_token, refresh_token }));
+    //   dispatch(setToken({ access_token, refresh_token }));
 
-      // await getProfile(access_token);
+    //   await getProfile(access_token);
 
+    //   toast.success("Login success!");
+    //   navigate("/pages");
+
+    //   reset(defaultValues);
+    // } catch (error: any) {
+    //   toast.error(error?.response?.data?.message || "Login fail!");
+    // }
+
+    const authenticatedUser = auth.find((user) => {
+      return (
+        user.username === values.username && user.password === values.password
+      );
+    });
+
+    if (authenticatedUser) {
       toast.success("Login success!");
-      navigate("/pages");
 
-      // reset(defaultValues);
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || "Login fail!");
+      localStorage.setItem(
+        "authenticatedUser",
+        JSON.stringify(authenticatedUser)
+      );
+
+      switch (authenticatedUser.role) {
+        case 1:
+          navigate("/info");
+          break;
+        case 2:
+          navigate("/harvest");
+          break;
+        case 3:
+          navigate("/warehouse");
+          break;
+        case 4:
+          navigate("/export-sale");
+          break;
+      }
+
+      console.log("Thông tin người dùng:", authenticatedUser);
+    } else {
+      toast.error("Login fail!");
     }
   };
   //#endregion

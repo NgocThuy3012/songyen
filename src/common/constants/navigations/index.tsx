@@ -10,18 +10,21 @@ export const NAVIGATIONS: INavigationItem[] = [
     icon: <InfoIcon />,
     isChildren: false,
     path: "/info",
+    role: 1,
   },
   {
     title: "Thu hoạch",
     icon: <AddchartIcon />,
     isChildren: false,
     path: "/harvest",
+    role: 2,
   },
   {
     title: "Kho",
     icon: <WarehouseIcon />,
     isChildren: false,
     path: "/warehouse",
+    role: 3,
   },
 
   {
@@ -29,5 +32,6 @@ export const NAVIGATIONS: INavigationItem[] = [
     icon: <CurrencyExchangeIcon />,
     isChildren: false,
     path: "/export-sale",
+    role: 4,
   },
 ];
