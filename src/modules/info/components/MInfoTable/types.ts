@@ -5,9 +5,7 @@ export interface IMInfoTableProps {
 
   onEdit: (id: string) => void;
 
-  onDelete: (id: string) => void;
+  page?: number;
 
-  page: number;
-
-  loading: boolean;
+  loading?: boolean;
 }

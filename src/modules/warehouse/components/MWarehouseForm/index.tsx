@@ -4,7 +4,7 @@ import { Grid, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 
 import { getPageServices } from "@/apis/page-services.api";
-import { CAutocomplete, CFormLabel, CInput } from "@/controls/";
+import { CAutocomplete, CDatePicker, CFormLabel, CInput } from "@/controls/";
 import { IOption } from "@/types/options";
 
 import { IMWarehouseFormProps } from "./types";
@@ -67,6 +67,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -89,6 +90,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -108,6 +110,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
               placeholder="Enter here..."
               error={!!error}
               helperText={error?.message}
+              disabled
             />
           )}
         />
@@ -129,6 +132,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -151,6 +155,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -174,6 +179,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -187,16 +193,20 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CFormLabel label="Ngày nhập kho" required />
             <Controller
               control={control}
-              name="code"
+              name="inputDate"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Enter here..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                 />
               )}
             />
@@ -205,7 +215,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
 
         <Grid item xs={6} rowSpacing={2}>
           <Stack direction="column" spacing={1} mb={2} flex={1}>
-            <CFormLabel label="Trọng lượng" required />
+            <CFormLabel label="Trọng lượng nhập kho" required />
             <Controller
               control={control}
               name="weight"

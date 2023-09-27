@@ -7,10 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getDetailEmployee, updateEmployee } from "@/apis/employees.api";
 import { CActionsForm } from "@/controls/";
-import { ICreateEmployeeForm } from "@/types/sales";
 
 import { defaultValuesPost, employeeResolver } from "../../form";
 import { MSaleForm } from "../../components/MSaleForm";
+import { ICreateSaleForm } from "@/types/sales";
+import { item } from "@/mock/sale";
 
 const UpdateSalePage = () => {
   const navigate = useNavigate();
@@ -18,22 +19,12 @@ const UpdateSalePage = () => {
   //#region Data
   const { id } = useParams();
 
-  const { data, error, isError } = useQuery(
-    ["user", id],
-    () => getDetailEmployee(id || ""),
-    { enabled: !!id }
-  );
-
-  if (error && isError) {
-    toast.error((error as any)?.response?.data?.message || "Something error");
-  }
-
   const {
     control,
     handleSubmit,
     reset,
     formState: { isSubmitting },
-  } = useForm<ICreateEmployeeForm>({
+  } = useForm<ICreateSaleForm>({
     mode: "all",
     resolver: employeeResolver,
     defaultValues: defaultValuesPost,
@@ -43,12 +34,12 @@ const UpdateSalePage = () => {
 
   //#region Event
   useEffect(() => {
-    if (data?.data?.data) {
+    if (item) {
       reset({
-        ...data?.data?.data,
+        ...item,
       });
     }
-  }, [data]);
+  }, [item]);
 
   const onCancel = () => {
     reset();

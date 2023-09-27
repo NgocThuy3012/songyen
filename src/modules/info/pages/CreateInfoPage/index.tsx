@@ -35,17 +35,18 @@ const CreateInfoPage = () => {
 
   const onSubmit = () => {
     handleSubmit(async (values) => {
-      try {
-        await createInfo({
-          ...values,
-        });
+      console.log("values", values);
+      // try {
+      //   await createInfo({
+      //     ...values,
+      //   });
 
-        toast.success("Create success!");
+      //   toast.success("Create success!");
 
-        onCancel();
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Create fail!");
-      }
+      //   onCancel();
+      // } catch (error: any) {
+      //   toast.error(error?.response?.data?.message || "Create fail!");
+      // }
     })();
   };
   //#endregion

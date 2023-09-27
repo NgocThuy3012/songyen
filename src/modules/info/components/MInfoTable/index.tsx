@@ -10,7 +10,6 @@ export const MInfoTable: React.FC<IMInfoTableProps> = ({
   loading,
   page,
   onEdit,
-  onDelete,
 }) => {
   //#region Ref
   //#endregion
@@ -54,10 +53,7 @@ export const MInfoTable: React.FC<IMInfoTableProps> = ({
       headerAlign: "center",
       align: "center",
       renderCell: (params: GridRenderCellParams<IGetInfoResponse>) => (
-        <CActionsTable
-          onEdit={() => onEdit(params.row.id)}
-          onDelete={() => onDelete(params.row.id)}
-        />
+        <CActionsTable onEdit={() => onEdit(params.row.id)} />
       ),
     },
   ];

@@ -10,6 +10,7 @@ import { getDetailInfo, updateInfo } from "@/apis/info.api";
 import { ICreateInfoForm } from "@/types/info";
 import { defaultValuesPost, infoResolver } from "../../form";
 import { MInfoForm } from "../../components";
+import { item } from "@/mock/info";
 
 const UpdateInfoPage = () => {
   const navigate = useNavigate();
@@ -42,12 +43,12 @@ const UpdateInfoPage = () => {
 
   //#region Event
   useEffect(() => {
-    if (data?.data?.data) {
+    if (item) {
       reset({
-        ...data?.data?.data,
+        ...item,
       });
     }
-  }, [data]);
+  }, [item]);
 
   const onCancel = () => {
     reset();
@@ -57,17 +58,7 @@ const UpdateInfoPage = () => {
 
   const onSubmit = () => {
     handleSubmit(async (values) => {
-      try {
-        await updateInfo(id || "", {
-          ...values,
-        });
-
-        toast.success("Update success!");
-
-        onCancel();
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Update fail!");
-      }
+      console.log("value", values);
     })();
   };
   //#endregion

@@ -3,11 +3,9 @@ import { IGetWarehouseResponse } from "@/types/warehouse";
 export interface IMWarehouseTableProps {
   page: number;
 
-  loading: boolean;
+  loading?: boolean;
 
   data: IGetWarehouseResponse[];
 
   onEdit: (id: string) => void;
-
-  onDelete: (id: string) => void;
 }

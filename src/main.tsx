@@ -13,7 +13,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "@/redux/";
 
-import "dayjs/locale/vi";
+import "dayjs/locale/en-gb";
 
 import { queryClient } from "./utils/react-query";
 import App from "./App";
@@ -29,7 +29,7 @@ createRoot(document.getElementById("__app") as HTMLElement).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>

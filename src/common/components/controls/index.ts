@@ -7,4 +7,4 @@ export * from "./CInput";
 export * from "./CInputPassword";
 export * from "./CSearchInput";
 export * from "./CSwitch";
-// export * from "./CDate";
+export * from "./CDatePicker";

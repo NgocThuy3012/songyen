@@ -41,6 +41,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -63,6 +64,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -82,6 +84,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
               placeholder="Enter here..."
               error={!!error}
               helperText={error?.message}
+              disabled
             />
           )}
         />
@@ -103,6 +106,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -125,6 +129,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -148,6 +153,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -171,6 +177,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -193,6 +200,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -212,6 +220,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
               placeholder="Enter here..."
               error={!!error}
               helperText={error?.message}
+              disabled
             />
           )}
         />
@@ -233,6 +242,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -255,6 +265,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -269,7 +280,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Ngày bán" required />
             <Controller
               control={control}
-              name="code"
+              name="dateSale"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -292,7 +303,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Lô bán" required />
             <Controller
               control={control}
-              name="acreage"
+              name="saleLot"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -302,7 +313,6 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
-                  type="number"
                 />
               )}
             />
@@ -314,7 +324,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
         <CFormLabel label="Trọng lượng bán ra" htmlFor="name" required />
         <Controller
           control={control}
-          name="address"
+          name="saleWeight"
           render={({ field, fieldState: { error } }) => (
             <CInput
               {...field}
@@ -322,6 +332,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
               placeholder="Enter here..."
               error={!!error}
               helperText={error?.message}
+              type="number"
             />
           )}
         />
@@ -333,7 +344,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Đơn vị mua" required />
             <Controller
               control={control}
-              name="date"
+              name="unit"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -354,7 +365,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Người xuất bán" required />
             <Controller
               control={control}
-              name="weight"
+              name="salePerson"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -364,7 +375,6 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
-                  type="number"
                 />
               )}
             />
@@ -375,10 +385,10 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
       <Grid container spacing={1}>
         <Grid item xs={6} rowSpacing={2}>
           <Stack direction="column" spacing={1} mb={2} flex={1}>
-            <CFormLabel label="Độ ẩm" required />
+            <CFormLabel label="Độ ẩm xuất bán" required />
             <Controller
               control={control}
-              name="plot"
+              name="saleHumidity"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}

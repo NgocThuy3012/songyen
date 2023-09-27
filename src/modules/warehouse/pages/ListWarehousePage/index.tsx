@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { AddCircleOutline } from "@mui/icons-material";
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 
 import { getPageServices } from "@/apis/page-services.api";
-import { deleteBlog, getPosts } from "@/apis/posts.api";
-import { confirm } from "@/confirm/";
-import { CAutocomplete, CFormLabel } from "@/controls/";
+import { getPosts } from "@/apis/posts.api";
+
 import { useNavigateQuery, useRevertQuery } from "@/hooks/";
 import { CPagination } from "@/others/";
 import { IOption } from "@/types/options";
@@ -16,6 +14,7 @@ import { IOption } from "@/types/options";
 import { MOCK_DATA } from "../../mocks/pages";
 import { MWarehouseTable } from "../../components";
 import { IGetWarehouseResponse } from "@/types/warehouse";
+import { listDataWarehouse } from "@/mock/warehouse";
 
 const ListWarehousePage = () => {
   //#region Data
@@ -45,11 +44,6 @@ const ListWarehousePage = () => {
 
   const [paginate, setPaginate] = useState({ page: 1, pages: 0 });
 
-  const { data, refetch, isFetching } = useQuery({
-    queryKey: ["posts", filter],
-    queryFn: () => getPosts(filter),
-  });
-
   const pageOptions: IOption[] = useMemo(() => {
     if (pageQuery) {
       const { data } = pageQuery;
@@ -66,10 +60,6 @@ const ListWarehousePage = () => {
     return [];
   }, [pageQuery.data]);
 
-  const listData = useMemo<IGetWarehouseResponse[]>(
-    () => data?.data?.data?.data || [],
-    [data]
-  );
   //#endregion
 
   //#region Event
@@ -86,54 +76,7 @@ const ListWarehousePage = () => {
 
   const onEdit = (id: string) => navigate(`detail/${id}`);
 
-  const onDelete = async (id: string) => {
-    if (
-      await confirm({
-        confirmation: "Deletion cannot be undone!",
-        acceptBtnText: "Confirm",
-      })
-    ) {
-      try {
-        await deleteBlog(id);
-
-        refetch();
-
-        toast.success("Delete success!");
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Delete fail!");
-      }
-    }
-  };
-
-  const onSearch = (value: string) =>
-    setFilter((prev) => ({
-      ...prev,
-      page: 1,
-      input: {
-        ...prev.input,
-        q: value,
-      },
-    }));
-
-  const onFilterPage = (value: string) =>
-    setFilter((prev) => ({
-      ...prev,
-      page: 1,
-      input: {
-        ...prev.input,
-        page_id: value,
-        category_id: "",
-      },
-    }));
-
   //#endregion
-
-  useEffect(() => {
-    setPaginate({
-      page: data?.data?.data?.page || 1,
-      pages: data?.data?.data?.pages || 0,
-    });
-  }, [data]);
 
   useEffect(() => {
     navigateWithNewQuery(filter);
@@ -151,26 +94,13 @@ const ListWarehousePage = () => {
         mb={3}
       >
         <Typography variant="page-title">Kho</Typography>
-
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Button
-            variant="contained"
-            className="add-button"
-            startIcon={<AddCircleOutline />}
-            onClick={() => navigate("detail")}
-          >
-            ADD NEW
-          </Button>
-        </Stack>
       </Stack>
 
       <Paper variant="wrapper">
         <MWarehouseTable
-          data={listData || MOCK_DATA || []}
+          data={listDataWarehouse || []}
           onEdit={onEdit}
-          onDelete={onDelete}
           page={paginate.page}
-          loading={isFetching}
         />
       </Paper>
 

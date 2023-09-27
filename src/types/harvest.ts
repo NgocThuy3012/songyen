@@ -18,25 +18,16 @@ export interface IGetListHarvestParams {
 
 export interface IGetHarvestResponse {
   id: string;
-
   code: string;
-}
-
-export interface IGetHarvestResponse {
-  id: string;
-  code: string;
-  acreage: string;
+  acreage: number;
   address: string;
-  date: Date;
-  weight: number;
-  plot: string;
 }
 
 export interface ICreateHarvestParams {
   code: string;
-  acreage: string;
+  acreage: number;
   address: string;
-  date: Date;
+  date: string;
   weight: number;
   plot: string;
 }
@@ -49,7 +40,7 @@ export interface IGetDetailHarvestResponse {
 
   code: string;
 
-  acreage: string;
+  acreage: number;
 
   address: string;
 

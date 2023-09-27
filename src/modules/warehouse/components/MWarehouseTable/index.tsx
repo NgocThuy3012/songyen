@@ -8,7 +8,6 @@ import { IMWarehouseTableProps } from "./types";
 export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
   data,
   onEdit,
-  onDelete,
   page,
   loading,
 }) => {
@@ -26,21 +25,21 @@ export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
       align: "center",
     },
     {
-      field: "page_name",
+      field: "code",
       headerName: "mã cơ sở",
       minWidth: 200,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "category_name",
+      field: "address",
       headerName: "địa chỉ",
       minWidth: 300,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "title",
+      field: "weight",
       headerName: "Trọng lượng",
       minWidth: 200,
       headerAlign: "left",
@@ -48,7 +47,15 @@ export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
       flex: 1,
     },
     {
-      field: "category_name",
+      field: "date",
+      headerName: "ngày thu hoạch",
+      minWidth: 200,
+      headerAlign: "left",
+      align: "left",
+      flex: 1,
+    },
+    {
+      field: "plot",
       headerName: "lô thu hoạch",
       minWidth: 300,
       headerAlign: "left",
@@ -61,10 +68,7 @@ export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
       headerAlign: "center",
       align: "center",
       renderCell: (params: GridRenderCellParams<IGetWarehouseResponse>) => (
-        <CActionsTable
-          onEdit={() => onEdit(params.row.id)}
-          onDelete={() => onDelete(params.row.id)}
-        />
+        <CActionsTable onEdit={() => onEdit(params.row.id)} />
       ),
     },
   ];

@@ -1,18 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { AddCircleOutline } from "@mui/icons-material";
-import { Box, Button, Paper, Stack, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 
-import { deleteEmployee, getEmployees } from "@/apis/employees.api";
-import { confirm } from "@/confirm/";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 
 import { useNavigateQuery, useRevertQuery } from "@/hooks/";
 import { CPagination } from "@/others/index";
 
 import { MSalesTable } from "../../components/MSaleTable";
-import { IGetSalesResponse } from "@/types/sales";
+
+import { listDataSale } from "@/mock/sale";
 
 // import { MCustomersTable } from '../../components';
 
@@ -36,15 +32,6 @@ const ListSalesPage = () => {
 
   const [paginate, setPaginate] = useState({ page: 1, pages: 0 });
 
-  const { data, refetch, isLoading, isError } = useQuery({
-    queryKey: ["users", filter],
-    queryFn: () => getEmployees(),
-  });
-
-  const listData = useMemo<IGetSalesResponse[]>(
-    () => (!isError ? data?.data?.data?.data || [] : []),
-    [data]
-  );
   //#endregion
 
   //#region Event
@@ -53,36 +40,7 @@ const ListSalesPage = () => {
 
   const onEdit = (id: string) => navigate(`detail/${id}`);
 
-  const onDelete = async (id: string) => {
-    if (
-      await confirm({
-        confirmation: "Deletion cannot be undone!",
-        acceptBtnText: "Confirm",
-      })
-    ) {
-      try {
-        await deleteEmployee(id);
-
-        refetch();
-
-        toast.success("Delete success!");
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Delete fail!");
-      }
-    }
-  };
-
-  const onSearch = (value: string) =>
-    setFilter((prev) => ({ ...prev, page: 1, input: { q: value } }));
-
   //#endregion
-
-  useEffect(() => {
-    setPaginate({
-      page: data?.data?.data?.page || 1,
-      pages: data?.data?.data?.pages || 0,
-    });
-  }, [data]);
 
   useEffect(() => {
     navigateWithNewQuery(filter);
@@ -100,26 +58,13 @@ const ListSalesPage = () => {
         mb={3}
       >
         <Typography variant="page-title">Xuất bán</Typography>
-
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Button
-            variant="contained"
-            className="add-button"
-            startIcon={<AddCircleOutline />}
-            onClick={() => navigate("detail")}
-          >
-            ADD NEW
-          </Button>
-        </Stack>
       </Stack>
 
       <Paper variant="wrapper">
         <MSalesTable
-          data={listData || []}
+          data={listDataSale || []}
           onEdit={onEdit}
-          onDelete={onDelete}
           page={paginate.page}
-          loading={isLoading}
         />
       </Paper>
 

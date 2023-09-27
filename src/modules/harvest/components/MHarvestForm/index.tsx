@@ -4,7 +4,7 @@ import { Grid, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 
 import { getPageServices } from "@/apis/page-services.api";
-import { CAutocomplete, CFormLabel, CInput, CSwitch } from "@/controls/";
+import { CAutocomplete, CFormLabel, CInput, CDatePicker } from "@/controls/";
 
 import { IOption } from "@/types/options";
 import { IMHarvestFormProps } from "./types";
@@ -15,26 +15,6 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
   //#endregion
 
   //#region Data
-  const pageQuery = useQuery({
-    queryKey: ["page-services"],
-    queryFn: () => getPageServices(),
-  });
-
-  const pageOptions: IOption[] = useMemo(() => {
-    if (pageQuery) {
-      const { data } = pageQuery;
-
-      if (data?.data?.data) {
-        return data.data.data.map((page) => ({
-          id: page.id,
-          label: page.name,
-          value: page.id,
-        }));
-      }
-    }
-
-    return [];
-  }, [pageQuery.data]);
 
   //#endregion
 
@@ -60,11 +40,12 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Mã cơ sở..."
                   multiline
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  disabled
                 />
               )}
             />
@@ -81,12 +62,13 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Diện tích chăn nuôi..."
                   multiline
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
                   type="number"
+                  disabled
                 />
               )}
             />
@@ -103,9 +85,10 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Địa chỉ..."
               error={!!error}
               helperText={error?.message}
+              disabled
             />
           )}
         />
@@ -119,14 +102,18 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
               control={control}
               name="date"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Enter here..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                 />
               )}
             />
@@ -143,7 +130,7 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Trọng lượng..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -167,7 +154,7 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Lô thu hoạch..."
                   multiline
                   rows={1}
                   error={!!error}

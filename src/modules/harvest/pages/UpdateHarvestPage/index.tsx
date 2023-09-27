@@ -9,24 +9,14 @@ import { CActionsForm } from "@/controls/";
 
 import { ICreateHarvestForm } from "@/types/harvest";
 import { MHarvestForm } from "../../components/MHarvestForm";
-import { getDetailHarvest, updateHarvest } from "@/apis/categories.api";
 import { defaultValuesHarvest, harvestResolver } from "../../form";
+import { item } from "@/mock/harvest";
 
 const UpdateHarvestPage = () => {
   const navigate = useNavigate();
 
   //#region Data
   const { id } = useParams();
-
-  const { data, error, isError } = useQuery(
-    ["Harvest", id],
-    () => getDetailHarvest(id || ""),
-    { enabled: !!id }
-  );
-
-  if (error && isError) {
-    toast.error((error as any)?.response?.data?.message || "Something error");
-  }
 
   const {
     control,
@@ -43,15 +33,10 @@ const UpdateHarvestPage = () => {
 
   //#region Event
   useEffect(() => {
-    if (data?.data?.data) {
-      const harvest = data?.data?.data;
-
-      reset({
-        ...harvest,
-        page_id: harvest?.page?.id,
-      });
-    }
-  }, [data]);
+    reset({
+      ...item,
+    });
+  }, [item]);
 
   const onCancel = () => {
     reset();
@@ -60,17 +45,11 @@ const UpdateHarvestPage = () => {
   };
 
   const onSubmit = () => {
-    handleSubmit(async (values) => {
-      try {
-        await updateHarvest(id || "", values);
-
-        toast.success("Update success!");
-
-        onCancel();
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Update fail!");
-      }
+    handleSubmit((values) => {
+      console.log("value", values);
     })();
+
+    navigate(-1);
   };
   //#endregion
 
@@ -78,7 +57,7 @@ const UpdateHarvestPage = () => {
   return (
     <>
       <Box mb={3}>
-        <Typography variant="page-title">Cập nhật</Typography>
+        <Typography variant="page-title">Nhập thông tin thu hoạch</Typography>
       </Box>
 
       <Paper variant="wrapper">

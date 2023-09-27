@@ -10,7 +10,7 @@ export interface ICreateWarehouseParams {
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 
@@ -18,21 +18,19 @@ export interface ICreateWarehouseParams {
 }
 
 export interface ICreateWarehouseForm {
-  id: string;
-
   code: string;
 
-  acreage: string;
+  acreage: number;
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 
   plot: string;
 
-  inputDate: Date;
+  inputDate: string;
 
   importLot: string;
 
@@ -41,16 +39,24 @@ export interface ICreateWarehouseForm {
   humidity: string;
 }
 
-export interface IUpdateBlogParams extends ICreateWarehouseParams {}
+export interface IUpdateWarehouseParams extends ICreateWarehouseParams {}
 
-export interface IUpdateBlogForm extends ICreateWarehouseParams {}
+export interface IUpdateWarehouseForm extends ICreateWarehouseParams {}
 
 export interface IGetWarehouseResponse {
   id: string;
-  page: { id: string; title: string };
-  folder: { id: string; title: string };
-  title: string;
-  is_public: boolean;
+
+  code: string;
+
+  acreage: number;
+
+  address: string;
+
+  date: string;
+
+  weight: number;
+
+  plot: string;
 }
 
 export interface IGetWarehouseParams extends IBasePaginateParams {
@@ -72,7 +78,7 @@ export interface IGetDetailWarehouseResponse {
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 

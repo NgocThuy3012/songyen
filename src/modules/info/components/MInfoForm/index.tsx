@@ -33,7 +33,7 @@ export const MInfoForm: React.FC<IMInfoFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Mã cơ sở..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -54,7 +54,7 @@ export const MInfoForm: React.FC<IMInfoFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Diện tích chăn nuôi..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -76,7 +76,7 @@ export const MInfoForm: React.FC<IMInfoFormProps> = ({ control }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Địa chỉ..."
               multiline
               rows={1}
               error={!!error}

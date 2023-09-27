@@ -10,7 +10,6 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
   loading,
   page,
   onEdit,
-  onDelete,
 }) => {
   //#region Ref
   //#endregion
@@ -25,21 +24,21 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       align: "center",
     },
     {
-      field: "fullname",
+      field: "code",
       headerName: `mã cơ sở`,
       minWidth: 200,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "username",
+      field: "address",
       headerName: `địa chỉ`,
       minWidth: 200,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "email",
+      field: "plot",
       headerName: "lô thu hoạch",
       minWidth: 200,
       headerAlign: "left",
@@ -47,7 +46,7 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       flex: 1,
     },
     {
-      field: "email1",
+      field: "date",
       headerName: "ngày thu hoạch",
       minWidth: 200,
       headerAlign: "left",
@@ -55,7 +54,7 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       flex: 1,
     },
     {
-      field: "email2",
+      field: "importLot",
       headerName: "lô nhập kho",
       minWidth: 200,
       headerAlign: "left",
@@ -63,7 +62,7 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       flex: 1,
     },
     {
-      field: "email3",
+      field: "inputDate",
       headerName: "ngày nhập kho",
       minWidth: 200,
       headerAlign: "left",
@@ -77,7 +76,7 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       headerAlign: "center",
       align: "center",
       renderCell: (params: GridRenderCellParams<IGetSalesResponse>) => (
-        <CActionsTable onDelete={() => onDelete(params.row.id)} />
+        <CActionsTable onEdit={() => onEdit(params.row.id)} />
       ),
     },
   ];

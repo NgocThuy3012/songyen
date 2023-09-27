@@ -7,10 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getDetailPost, updateBlog } from "@/apis/posts.api";
 import { CActionsForm } from "@/controls/";
-import { IUpdateBlogForm } from "@/types/warehouse";
+import { ICreateWarehouseForm } from "@/types/warehouse";
 
-import { defaultValuesPost, postResolver } from "../../form";
+import { defaultValuesPost, warehouseResolver } from "../../form";
 import { MWarehouseForm } from "../../components";
+import { item } from "@/mock/warehouse";
 
 const UpdateWarehousePage = () => {
   const navigate = useNavigate();
@@ -18,36 +19,35 @@ const UpdateWarehousePage = () => {
   //#region Data
   const { id } = useParams();
 
-  const { data, error, isError } = useQuery(
-    ["page", id],
-    () => getDetailPost(id || ""),
-    { enabled: !!id }
-  );
+  // const { data, error, isError } = useQuery(
+  //   ["page", id],
+  //   () => getDetailPost(id || ""),
+  //   { enabled: !!id }
+  // );
 
-  if (error && isError) {
-    toast.error((error as any)?.response?.data?.message || "Something error");
-  }
+  // if (error && isError) {
+  //   toast.error((error as any)?.response?.data?.message || "Something error");
+  // }
 
   const {
     control,
     reset,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<IUpdateBlogForm>({
+  } = useForm<ICreateWarehouseForm>({
     mode: "all",
-    resolver: postResolver,
-    defaultValues: data?.data?.data || defaultValuesPost,
+    resolver: warehouseResolver,
+    defaultValues: defaultValuesPost,
   });
   //#endregion
 
   //#region Event
+
   useEffect(() => {
-    if (data?.data?.data) {
-      reset({
-        ...data?.data?.data,
-      });
-    }
-  }, [data]);
+    reset({
+      ...item,
+    });
+  }, [item]);
 
   const onCancel = () => {
     reset();
@@ -57,17 +57,9 @@ const UpdateWarehousePage = () => {
 
   const onSubmit = () => {
     handleSubmit(async (values) => {
-      try {
-        await updateBlog(id || "", {
-          ...values,
-        });
+      toast.success("Update success!");
 
-        toast.success("Update success!");
-
-        onCancel();
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Update fail!");
-      }
+      console.log("value", values);
     })();
   };
   //#endregion

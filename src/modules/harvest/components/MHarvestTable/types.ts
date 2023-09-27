@@ -5,9 +5,7 @@ export interface IMHarvestTableProps {
 
   page: number;
 
-  loading: boolean;
+  loading?: boolean;
 
   onEdit: (id: string) => void;
-
-  onDelete: (id: string) => void;
 }

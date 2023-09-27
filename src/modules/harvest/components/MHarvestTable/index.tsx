@@ -11,7 +11,6 @@ export const MHarvestTable: React.FC<IMHarvestTableProps> = ({
   loading,
   page,
   onEdit,
-  onDelete,
 }) => {
   //#region Ref
   //#endregion
@@ -27,15 +26,22 @@ export const MHarvestTable: React.FC<IMHarvestTableProps> = ({
       align: "center",
     },
     {
-      field: "page_name",
+      field: "code",
       headerName: "mã cơ sở",
       minWidth: 200,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "name",
+      field: "address",
       headerName: "địa chỉ",
+      flex: 1,
+      headerAlign: "left",
+      align: "left",
+    },
+    {
+      field: "acreage",
+      headerName: "Diện tích",
       flex: 1,
       headerAlign: "left",
       align: "left",
@@ -47,10 +53,7 @@ export const MHarvestTable: React.FC<IMHarvestTableProps> = ({
       headerAlign: "center",
       align: "center",
       renderCell: (params: GridRenderCellParams<IGetHarvestResponse>) => (
-        <CActionsTable
-          onEdit={() => onEdit(params.row.id)}
-          onDelete={() => onDelete(params.row.id)}
-        />
+        <CActionsTable onEdit={() => onEdit(params.row.id)} />
       ),
     },
   ];

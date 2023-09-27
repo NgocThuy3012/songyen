@@ -9,15 +9,23 @@ export interface IGetSalesResponse {
 
   code: string;
 
-  acreage: string;
+  acreage: number;
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 
   plot: string;
+
+  inputDate: string;
+
+  importLot: string;
+
+  warehousingPerson: string;
+
+  humidity: string;
 }
 
 export interface ICreateSaleParams {
@@ -25,23 +33,35 @@ export interface ICreateSaleParams {
 
   code: string;
 
-  acreage: string;
+  acreage: number;
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 
   plot: string;
 
-  inputDate: Date;
+  inputDate: string;
 
   importLot: string;
 
   warehousingPerson: string;
 
   humidity: string;
+
+  dateSale: string;
+
+  saleLot: string;
+
+  saleWeight: number;
+
+  unit: string;
+
+  salePerson: string;
+
+  saleHumidity: string;
 }
 
 export interface ICreateSaleForm extends ICreateSaleParams {}
@@ -53,11 +73,11 @@ export interface IGetDetailSaleResponse {
 
   code: string;
 
-  acreage: string;
+  acreage: number;
 
   address: string;
 
-  date: Date;
+  date: string;
 
   weight: number;
 
