@@ -1,13 +1,13 @@
 import { Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { object, string } from "yup";
+import { number, object, string } from "yup";
 import { ICreateWarehouseForm } from "@/types/warehouse";
 
 export const defaultValuesPost: ICreateWarehouseForm = {
   code: "",
   acreage: 0,
 
-  address: "",
+  address: 0,
 
   date: "",
 
@@ -22,20 +22,16 @@ export const defaultValuesPost: ICreateWarehouseForm = {
   warehousingPerson: "",
 
   humidity: "",
+
+  inputWeight: 0,
 };
 
 export const warehouseResolver: Resolver<ICreateWarehouseForm> = yupResolver(
   object({
-    // page_id: string().required("Please select page!"),
-    // category_id: string().required("Please select category!"),
-    // title: string().required("Please enter title!"),
-    // description: string().required("Please enter description!"),
-    // content: string().required("Please enter content!"),
-    // image: object({
-    //   id: string().required("Please choose image!"),
-    // }).required("Please choose image!"),
-    // background: object({
-    //   id: string().required("Please choose image!"),
-    // }).required("Please choose background!"),
+    inputDate: string().required("Vui lòng chọn ngày nhập kho!"),
+    importLot: string().required("Vui lòng nhập lô nhập kho!"),
+    humidity: string().required("Vui lòng nhập độ ẩm!"),
+    warehousingPerson: string().required("Vui lòng nhập người nhập kho!"),
+    inputWeight: number().required("Vui lòng nhập trọng lượng!"),
   })
 );

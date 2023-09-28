@@ -21,7 +21,7 @@ export interface ICreateWarehouseForm {
 
   acreage: number;
 
-  address: string;
+  address: number;
 
   date: string;
 

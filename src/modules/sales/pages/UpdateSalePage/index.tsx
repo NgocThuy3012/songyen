@@ -52,12 +52,12 @@ const UpdateSalePage = () => {
 
   //#region Event
   useEffect(() => {
-    if (item) {
+    if (data) {
       reset({
-        ...item,
+        ...data,
       });
     }
-  }, [item]);
+  }, [data]);
 
   const onCancel = () => {
     reset();

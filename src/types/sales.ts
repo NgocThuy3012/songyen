@@ -28,7 +28,7 @@ export interface IGetSalesResponse {
   humidity: string;
 }
 
-export interface ICreateSaleParams {
+export interface ICreateSaleForm {
   code: string;
 
   acreage: number;
@@ -64,9 +64,9 @@ export interface ICreateSaleParams {
   saleHumidity: string;
 }
 
-export interface ICreateSaleForm extends ICreateSaleParams {}
+// export interface ICreateSaleForm extends ICreateSaleParams {}
 
-export interface IUpdateSaleParams extends ICreateSaleParams {}
+// export interface IUpdateSaleParams extends ICreateSaleParams {}
 
 export interface IGetDetailSaleResponse {
   id: string;
