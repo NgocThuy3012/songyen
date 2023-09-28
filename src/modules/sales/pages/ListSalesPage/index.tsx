@@ -9,6 +9,7 @@ import { CPagination } from "@/others/index";
 import { MSalesTable } from "../../components/MSaleTable";
 
 import { listDataSale } from "@/mock/sale";
+import { IGetSalesResponse } from "@/types/sales";
 
 // import { MCustomersTable } from '../../components';
 
@@ -20,31 +21,25 @@ const ListSalesPage = () => {
   const { navigateWithNewQuery } = useNavigateQuery();
   const params = useRevertQuery(location.search);
 
-  const [filter, setFilter] = useState(
-    params || {
-      page: 1,
-      pages: 0,
-      input: {
-        q: "",
-      },
+  const [data, setData] = useState<IGetSalesResponse[]>([]);
+
+  const existingDataStr = localStorage.getItem("warehouseData");
+
+  useEffect(() => {
+    if (existingDataStr) {
+      setData(JSON.parse(existingDataStr));
     }
-  );
+  }, [existingDataStr]);
 
   const [paginate, setPaginate] = useState({ page: 1, pages: 0 });
 
   //#endregion
 
   //#region Event
-  const onPageChange = (event: any, newPage: number) =>
-    setFilter((prev) => ({ ...prev, page: newPage }));
 
   const onEdit = (id: string) => navigate(`detail/${id}`);
 
   //#endregion
-
-  useEffect(() => {
-    navigateWithNewQuery(filter);
-  }, [filter]);
 
   //#region Render
   return (
@@ -61,18 +56,14 @@ const ListSalesPage = () => {
       </Stack>
 
       <Paper variant="wrapper">
-        <MSalesTable
-          data={listDataSale || []}
-          onEdit={onEdit}
-          page={paginate.page}
-        />
+        <MSalesTable data={data || []} onEdit={onEdit} page={paginate.page} />
       </Paper>
 
-      <CPagination
+      {/* <CPagination
         page={paginate.page}
         pages={paginate.pages}
-        onChange={onPageChange}
-      />
+        // onChange={onPageChange}
+      /> */}
     </Box>
   );
   //#endregion

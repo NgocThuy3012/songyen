@@ -29,8 +29,6 @@ export interface IGetSalesResponse {
 }
 
 export interface ICreateSaleParams {
-  id: string;
-
   code: string;
 
   acreage: number;
@@ -46,6 +44,8 @@ export interface ICreateSaleParams {
   inputDate: string;
 
   importLot: string;
+
+  inputWeight: number;
 
   warehousingPerson: string;
 
@@ -82,6 +82,28 @@ export interface IGetDetailSaleResponse {
   weight: number;
 
   plot: string;
+
+  inputDate: string;
+
+  importLot: string;
+
+  inputWeight: number;
+
+  warehousingPerson: string;
+
+  humidity: string;
+
+  dateSale: string;
+
+  saleLot: string;
+
+  saleWeight: number;
+
+  unit: string;
+
+  salePerson: string;
+
+  saleHumidity: string;
 }
 
 export interface IEmptyResponse {

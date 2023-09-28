@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,6 +11,9 @@ import { ICreateHarvestForm } from "@/types/harvest";
 import { MHarvestForm } from "../../components/MHarvestForm";
 import { defaultValuesHarvest, harvestResolver } from "../../form";
 import { item } from "@/mock/harvest";
+import dayjs from "dayjs";
+import { IGetInfoResponse } from "@/types/info";
+import { IGetWarehouseResponse } from "@/types/warehouse";
 
 const UpdateHarvestPage = () => {
   const navigate = useNavigate();
@@ -18,9 +21,26 @@ const UpdateHarvestPage = () => {
   //#region Data
   const { id } = useParams();
 
+  const [data, setData] = useState<IGetInfoResponse>();
+
+  useEffect(() => {
+    const existingDataStr = localStorage.getItem("infoData");
+
+    if (existingDataStr) {
+      const array: IGetInfoResponse[] = JSON.parse(existingDataStr);
+
+      const foundIndex = array.findIndex((item) => item.id === id);
+
+      if (foundIndex !== -1) {
+        setData(array[foundIndex]);
+      }
+    }
+  }, [id]);
+
   const {
     control,
     handleSubmit,
+    setValue,
     reset,
     formState: { isSubmitting },
   } = useForm<ICreateHarvestForm>({
@@ -34,9 +54,9 @@ const UpdateHarvestPage = () => {
   //#region Event
   useEffect(() => {
     reset({
-      ...item,
+      ...data,
     });
-  }, [item]);
+  }, [data]);
 
   const onCancel = () => {
     reset();
@@ -45,11 +65,27 @@ const UpdateHarvestPage = () => {
   };
 
   const onSubmit = () => {
-    handleSubmit((values) => {
-      console.log("value", values);
-    })();
+    handleSubmit(async (values) => {
+      console.log("values", values);
+      const existingDataStr = localStorage.getItem("harvestData");
+      let existingData: IGetWarehouseResponse[] = [];
 
+      if (existingDataStr) {
+        existingData = JSON.parse(existingDataStr);
+      }
+
+      existingData.push({ id: "th" + Math.random(), ...values });
+
+      localStorage.setItem("harvestData", JSON.stringify(existingData));
+    })();
     navigate(-1);
+  };
+
+  const onChangeDate = (value: Date) => {
+    if (value) {
+      const formattedDate = dayjs(value).format("DD/MM/YYYY");
+      setValue("date", formattedDate);
+    }
   };
   //#endregion
 
@@ -62,7 +98,10 @@ const UpdateHarvestPage = () => {
 
       <Paper variant="wrapper">
         <form>
-          <MHarvestForm control={control} />
+          <MHarvestForm
+            control={control}
+            onChangeDate={(value) => onChangeDate(value)}
+          />
 
           <CActionsForm
             onCancel={onCancel}

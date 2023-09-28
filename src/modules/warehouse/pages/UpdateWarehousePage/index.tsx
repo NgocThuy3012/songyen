@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -12,6 +12,9 @@ import { ICreateWarehouseForm } from "@/types/warehouse";
 import { defaultValuesPost, warehouseResolver } from "../../form";
 import { MWarehouseForm } from "../../components";
 import { item } from "@/mock/warehouse";
+import { IGetHarvestResponse } from "@/types/harvest";
+import dayjs from "dayjs";
+import { IGetSalesResponse } from "@/types/sales";
 
 const UpdateWarehousePage = () => {
   const navigate = useNavigate();
@@ -19,19 +22,26 @@ const UpdateWarehousePage = () => {
   //#region Data
   const { id } = useParams();
 
-  // const { data, error, isError } = useQuery(
-  //   ["page", id],
-  //   () => getDetailPost(id || ""),
-  //   { enabled: !!id }
-  // );
+  const [data, setData] = useState<IGetHarvestResponse>();
 
-  // if (error && isError) {
-  //   toast.error((error as any)?.response?.data?.message || "Something error");
-  // }
+  useEffect(() => {
+    const existingDataStr = localStorage.getItem("harvestData");
+
+    if (existingDataStr) {
+      const array: IGetHarvestResponse[] = JSON.parse(existingDataStr);
+
+      const foundIndex = array.findIndex((item) => item.id === id);
+
+      if (foundIndex !== -1) {
+        setData(array[foundIndex]);
+      }
+    }
+  }, [id]);
 
   const {
     control,
     reset,
+    setValue,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<ICreateWarehouseForm>({
@@ -45,9 +55,9 @@ const UpdateWarehousePage = () => {
 
   useEffect(() => {
     reset({
-      ...item,
+      ...data,
     });
-  }, [item]);
+  }, [data]);
 
   const onCancel = () => {
     reset();
@@ -57,10 +67,29 @@ const UpdateWarehousePage = () => {
 
   const onSubmit = () => {
     handleSubmit(async (values) => {
-      toast.success("Update success!");
+      console.log("values", values);
+      const existingDataStr = localStorage.getItem("warehouseData");
+      let existingData: IGetSalesResponse[] = [];
 
-      console.log("value", values);
+      if (existingDataStr) {
+        existingData = JSON.parse(existingDataStr);
+      }
+
+      existingData.push({ id: "wh" + Math.random(), ...values });
+
+      localStorage.setItem("warehouseData", JSON.stringify(existingData));
     })();
+    navigate(-1);
+  };
+
+  const onChangeDate = (name: string, value: Date) => {
+    if (value) {
+      const formattedDate = dayjs(value).format("DD/MM/YYYY");
+
+      if (name == "date" || name == "inputDate") {
+        setValue(name, formattedDate);
+      }
+    }
   };
   //#endregion
 
@@ -73,7 +102,10 @@ const UpdateWarehousePage = () => {
 
       <Paper variant="wrapper">
         <form>
-          <MWarehouseForm control={control} />
+          <MWarehouseForm
+            control={control}
+            onChangeDate={(name, value) => onChangeDate(name, value)}
+          />
 
           <CActionsForm
             onCancel={onCancel}

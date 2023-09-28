@@ -10,7 +10,10 @@ import { IOption } from "@/types/options";
 import { IMHarvestFormProps } from "./types";
 import { ICreateHarvestForm } from "@/types/harvest";
 
-export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
+export const MHarvestForm: React.FC<IMHarvestFormProps> = ({
+  control,
+  onChangeDate,
+}) => {
   //#region Ref
   //#endregion
 
@@ -102,18 +105,12 @@ export const MHarvestForm: React.FC<IMHarvestFormProps> = ({ control }) => {
               control={control}
               name="date"
               render={({ field, fieldState: { error } }) => (
-                // <CInput
-                //   {...field}
-                //   id="name"
-                //   placeholder="Enter here..."
-                //   multiline
-                //   rows={1}
-                //   error={!!error}
-                //   helperText={error?.message}
-                // />
                 <CDatePicker
                   {...field}
-                  onChange={(value) => field.onChange(value)}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    onChangeDate(value);
+                  }}
                 />
               )}
             />

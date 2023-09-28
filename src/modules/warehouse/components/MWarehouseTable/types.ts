@@ -1,7 +1,7 @@
 import { IGetWarehouseResponse } from "@/types/warehouse";
 
 export interface IMWarehouseTableProps {
-  page: number;
+  page?: number;
 
   loading?: boolean;
 

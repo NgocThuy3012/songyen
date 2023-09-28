@@ -9,6 +9,7 @@ import { CPagination } from "@/others/";
 import { MHarvestTable } from "../../components/MHarvestTable";
 
 import { listDataHarvest } from "@/mock/harvest";
+import { IGetInfoResponse } from "@/types/info";
 
 const ListHarvestPage = () => {
   //#region Data
@@ -16,6 +17,16 @@ const ListHarvestPage = () => {
   const navigate = useNavigate();
 
   const [paginate, setPaginate] = useState({ page: 1, pages: 0 });
+
+  const [data, setData] = useState<IGetInfoResponse[]>([]);
+
+  const existingDataStr = localStorage.getItem("infoData");
+
+  useEffect(() => {
+    if (existingDataStr) {
+      setData(JSON.parse(existingDataStr));
+    }
+  }, [existingDataStr]);
 
   //#endregion
 
@@ -42,7 +53,7 @@ const ListHarvestPage = () => {
       <Paper variant="wrapper">
         <MHarvestTable
           // loading={isLoading}
-          data={listDataHarvest || []}
+          data={data || []}
           onEdit={onEdit}
           page={paginate.page}
         />

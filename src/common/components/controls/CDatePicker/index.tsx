@@ -5,12 +5,13 @@ import { ICDateProps } from "./types";
 import { forwardRef } from "react";
 
 export const CDatePicker = forwardRef<ICDateProps, ICDateProps>(
-  ({ value, disabled, ...props }, ref) => {
+  ({ value, disabled, onChange, ...props }, ref) => {
     return (
       <div>
         <DatePicker
           disabled={disabled}
           value={value ? dayjs(value, "DD/MM/YYYY") : dayjs()}
+          onChange={onChange}
           {...props}
         />
       </div>

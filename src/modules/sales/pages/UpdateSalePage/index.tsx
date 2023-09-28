@@ -1,17 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Box, Paper, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 
-import { getDetailEmployee, updateEmployee } from "@/apis/employees.api";
+import { Box, Paper, Typography } from "@mui/material";
+
 import { CActionsForm } from "@/controls/";
 
-import { defaultValuesPost, employeeResolver } from "../../form";
+import { defaultValuesPost, saleResolver } from "../../form";
 import { MSaleForm } from "../../components/MSaleForm";
-import { ICreateSaleForm } from "@/types/sales";
+import { ICreateSaleForm, IGetDetailSaleResponse } from "@/types/sales";
 import { item } from "@/mock/sale";
+
+import dayjs from "dayjs";
+import { IGetWarehouseResponse } from "@/types/warehouse";
 
 const UpdateSalePage = () => {
   const navigate = useNavigate();
@@ -19,14 +20,31 @@ const UpdateSalePage = () => {
   //#region Data
   const { id } = useParams();
 
+  const [data, setData] = useState<IGetWarehouseResponse>();
+
+  useEffect(() => {
+    const existingDataStr = localStorage.getItem("warehouseData");
+
+    if (existingDataStr) {
+      const array: IGetWarehouseResponse[] = JSON.parse(existingDataStr);
+
+      const foundIndex = array.findIndex((item) => item.id === id);
+
+      if (foundIndex !== -1) {
+        setData(array[foundIndex]);
+      }
+    }
+  }, [id]);
+
   const {
     control,
-    handleSubmit,
     reset,
+    setValue,
+    handleSubmit,
     formState: { isSubmitting },
   } = useForm<ICreateSaleForm>({
     mode: "all",
-    resolver: employeeResolver,
+    resolver: saleResolver,
     defaultValues: defaultValuesPost,
   });
 
@@ -48,19 +66,31 @@ const UpdateSalePage = () => {
   };
 
   const onSubmit = () => {
+    console.log("values");
     handleSubmit(async (values) => {
-      try {
-        await updateEmployee(id || "", {
-          ...values,
-        });
+      console.log("values", values);
+      const existingDataStr = localStorage.getItem("saleData");
+      let existingData: IGetDetailSaleResponse[] = [];
 
-        toast.success("Update success!");
-
-        onCancel();
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Update fail!");
+      if (existingDataStr) {
+        existingData = JSON.parse(existingDataStr);
       }
+
+      existingData.push({ id: "sl" + Math.random(), ...values });
+
+      localStorage.setItem("saleData", JSON.stringify(existingData));
     })();
+    navigate(-1);
+  };
+
+  const onChangeDate = (name: string, value: Date) => {
+    if (value) {
+      const formattedDate = dayjs(value).format("DD/MM/YYYY");
+
+      if (name == "date" || name == "inputDate" || name == "dateSale") {
+        setValue(name, formattedDate);
+      }
+    }
   };
   //#endregion
 
@@ -73,7 +103,10 @@ const UpdateSalePage = () => {
 
       <Paper variant="wrapper">
         <form>
-          <MSaleForm control={control} />
+          <MSaleForm
+            control={control}
+            onChangeDate={(name, value) => onChangeDate(name, value)}
+          />
 
           <CActionsForm
             onCancel={onCancel}

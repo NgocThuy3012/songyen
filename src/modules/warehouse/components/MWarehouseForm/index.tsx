@@ -12,7 +12,10 @@ import dayjs from "dayjs";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js
-export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
+export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({
+  control,
+  onChangeDate,
+}) => {
   //#region Ref
 
   //#endregion
@@ -183,7 +186,10 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
               render={({ field, fieldState: { error } }) => (
                 <CDatePicker
                   {...field}
-                  onChange={(value) => field.onChange(value)}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    onChangeDate("inputDate", value);
+                  }}
                 />
               )}
             />
@@ -195,7 +201,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CFormLabel label="Trọng lượng nhập kho" required />
             <Controller
               control={control}
-              name="weight"
+              name="inputWeight"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}

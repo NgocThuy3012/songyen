@@ -7,13 +7,15 @@ import { useNavigateQuery } from "@/hooks/";
 import { CPagination } from "@/others/index";
 import { MInfoTable } from "../../components";
 import { information } from "@/mock/info";
+import { useEffect, useState } from "react";
+import { IGetInfoResponse } from "@/types/info";
 
 const ListInfoPage = () => {
   //#region Data
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { navigateWithNewQuery } = useNavigateQuery();
+  const [data, setData] = useState<IGetInfoResponse[]>([]);
 
   //#endregion
 
@@ -21,8 +23,13 @@ const ListInfoPage = () => {
 
   const onEdit = (id: string) => navigate(`detail/${id}`);
 
-  // const onSearch = (value: string) =>
-  //   setFilter((prev) => ({ ...prev, page: 1, input: { q: value } }));
+  const existingDataStr = localStorage.getItem("infoData");
+
+  useEffect(() => {
+    if (existingDataStr) {
+      setData(JSON.parse(existingDataStr));
+    }
+  }, [existingDataStr]);
 
   //#endregion
 
@@ -54,7 +61,7 @@ const ListInfoPage = () => {
 
       <Paper variant="wrapper">
         <MInfoTable
-          data={information || []}
+          data={data || []}
           onEdit={onEdit}
           // page={paginate.page}
           // loading={isLoading}

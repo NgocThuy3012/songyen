@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { CActionsForm } from "@/controls/";
 import { getDetailInfo, updateInfo } from "@/apis/info.api";
-import { ICreateInfoForm } from "@/types/info";
+import { ICreateInfoForm, IGetInfoResponse } from "@/types/info";
 import { defaultValuesPost, infoResolver } from "../../form";
 import { MInfoForm } from "../../components";
 import { item } from "@/mock/info";
@@ -15,18 +15,24 @@ import { item } from "@/mock/info";
 const UpdateInfoPage = () => {
   const navigate = useNavigate();
 
+  const [data, setData] = useState<IGetInfoResponse>();
+
   //#region Data
   const { id } = useParams();
 
-  const { data, error, isError } = useQuery(
-    ["info", id],
-    () => getDetailInfo(id || ""),
-    { enabled: !!id }
-  );
+  useEffect(() => {
+    const existingDataStr = localStorage.getItem("infoData");
 
-  if (error && isError) {
-    toast.error((error as any)?.response?.data?.message || "Something error");
-  }
+    if (existingDataStr) {
+      const array: IGetInfoResponse[] = JSON.parse(existingDataStr);
+
+      const foundIndex = array.findIndex((item) => item.id === id);
+
+      if (foundIndex !== -1) {
+        setData(array[foundIndex]);
+      }
+    }
+  }, [id]);
 
   const {
     control,
@@ -43,12 +49,12 @@ const UpdateInfoPage = () => {
 
   //#region Event
   useEffect(() => {
-    if (item) {
+    if (data) {
       reset({
-        ...item,
+        ...data,
       });
     }
-  }, [item]);
+  }, [data]);
 
   const onCancel = () => {
     reset();
@@ -58,7 +64,20 @@ const UpdateInfoPage = () => {
 
   const onSubmit = () => {
     handleSubmit(async (values) => {
-      console.log("value", values);
+      const existingDataStr = localStorage.getItem("infoData");
+
+      if (existingDataStr) {
+        const array: IGetInfoResponse[] = JSON.parse(existingDataStr);
+
+        const foundIndex = array.findIndex((item) => item.id === id);
+
+        if (foundIndex !== -1) {
+          array[foundIndex] = { ...array[foundIndex], ...values };
+        }
+        console.log("value", values);
+        localStorage.setItem("infoData", JSON.stringify(array));
+        navigate(-1);
+      }
     })();
   };
   //#endregion

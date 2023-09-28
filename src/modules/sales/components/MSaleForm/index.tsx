@@ -8,7 +8,10 @@ import { useState } from "react";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js
-export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
+export const MSaleForm: React.FC<IMSaleFormProps> = ({
+  control,
+  onChangeDate,
+}) => {
   //#region Ref
 
   //#endregion
@@ -98,16 +101,6 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
               control={control}
               name="date"
               render={({ field, fieldState: { error } }) => (
-                // <CInput
-                //   {...field}
-                //   id="name"
-                //   placeholder="Ngày thu hoạch..."
-                //   multiline
-                //   rows={1}
-                //   error={!!error}
-                //   helperText={error?.message}
-                //   disabled
-                // />
                 <CDatePicker
                   {...field}
                   onChange={(value) => field.onChange(value)}
@@ -174,16 +167,6 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
               control={control}
               name="inputDate"
               render={({ field, fieldState: { error } }) => (
-                // <CInput
-                //   {...field}
-                //   id="name"
-                //   placeholder="Ngày nhập kho..."
-                //   multiline
-                //   rows={1}
-                //   error={!!error}
-                //   helperText={error?.message}
-                //   disabled
-                // />
                 <CDatePicker
                   {...field}
                   onChange={(value) => field.onChange(value)}
@@ -199,7 +182,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
             <CFormLabel label="Trọng lượng nhập kho" required />
             <Controller
               control={control}
-              name="acreage"
+              name="inputWeight"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
@@ -209,6 +192,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
+                  type="number"
                   disabled
                 />
               )}
@@ -290,18 +274,12 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
               control={control}
               name="dateSale"
               render={({ field, fieldState: { error } }) => (
-                // <CInput
-                //   {...field}
-                //   id="name"
-                //   placeholder="Ngày bán..."
-                //   multiline
-                //   rows={1}
-                //   error={!!error}
-                //   helperText={error?.message}
-                // />
                 <CDatePicker
                   {...field}
-                  onChange={(value) => field.onChange(value)}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    onChangeDate("dateSale", value);
+                  }}
                 />
               )}
             />

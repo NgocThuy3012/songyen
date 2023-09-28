@@ -6,7 +6,7 @@ import { Box, Paper, Typography } from "@mui/material";
 import { CActionsForm } from "@/controls/";
 
 import { defaultValuesPost, infoResolver } from "../../form";
-import { ICreateInfoForm } from "@/types/info";
+import { ICreateInfoForm, IGetInfoResponse } from "@/types/info";
 import { MInfoForm } from "../../components";
 import { createInfo } from "@/apis/info.api";
 
@@ -36,18 +36,18 @@ const CreateInfoPage = () => {
   const onSubmit = () => {
     handleSubmit(async (values) => {
       console.log("values", values);
-      // try {
-      //   await createInfo({
-      //     ...values,
-      //   });
+      const existingDataStr = localStorage.getItem("infoData");
+      let existingData: IGetInfoResponse[] = [];
 
-      //   toast.success("Create success!");
+      if (existingDataStr) {
+        existingData = JSON.parse(existingDataStr);
+      }
 
-      //   onCancel();
-      // } catch (error: any) {
-      //   toast.error(error?.response?.data?.message || "Create fail!");
-      // }
+      existingData.push({ id: "cs" + Math.random(), ...values });
+
+      localStorage.setItem("infoData", JSON.stringify(existingData));
     })();
+    navigate(-1);
   };
   //#endregion
 

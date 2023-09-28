@@ -1,4 +1,3 @@
-import { IFileResponse } from "./files";
 import { IBasePaginateParams } from "./params";
 
 export interface ICreateWarehouseParams {
@@ -37,11 +36,13 @@ export interface ICreateWarehouseForm {
   warehousingPerson: string;
 
   humidity: string;
+
+  inputWeight: number;
 }
 
 export interface IUpdateWarehouseParams extends ICreateWarehouseParams {}
 
-export interface IUpdateWarehouseForm extends ICreateWarehouseParams {}
+export interface IUpdateWarehouseForm extends ICreateWarehouseForm {}
 
 export interface IGetWarehouseResponse {
   id: string;
