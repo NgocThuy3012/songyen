@@ -4,6 +4,8 @@ import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { CActionsTable, CDataGrid } from "@/others/";
 import { IMSalesTableProps } from "./typess";
 import { IGetSalesResponse } from "@/types/sales";
+import QrCode2Icon from "@mui/icons-material/QrCode2";
+import { CQrcode } from "@/controls/";
 
 export const MSalesTable: React.FC<IMSalesTableProps> = ({
   data,
@@ -70,8 +72,18 @@ export const MSalesTable: React.FC<IMSalesTableProps> = ({
       flex: 1,
     },
     {
+      field: "qrcode",
+      headerName: "xuất QRcode",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<IGetSalesResponse>) => (
+        <CQrcode id={params.row.id} />
+      ),
+    },
+    {
       field: "action",
-      headerName: "ACTION",
+      headerName: "",
       minWidth: 150,
       headerAlign: "center",
       align: "center",

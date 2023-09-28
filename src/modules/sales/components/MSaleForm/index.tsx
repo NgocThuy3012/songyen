@@ -1,14 +1,14 @@
 import { Controller } from "react-hook-form";
 import { Grid, Stack } from "@mui/material";
 
-import { CFormLabel, CInput } from "@/controls/";
+import { CDatePicker, CFormLabel, CInput } from "@/controls/";
 import { IMSaleFormProps } from "./types";
 
 import { useState } from "react";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js
-export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
+export const MSaleForm: React.FC<IMSaleFormProps> = ({ control }) => {
   //#region Ref
 
   //#endregion
@@ -36,7 +36,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Mã cơ sở..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -58,7 +58,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Diện tích chăn nuôi..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -81,7 +81,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Địa chỉ..."
               error={!!error}
               helperText={error?.message}
               disabled
@@ -98,14 +98,19 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
               control={control}
               name="date"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Ngày thu hoạch..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                //   disabled
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                   disabled
                 />
               )}
@@ -123,7 +128,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Trọng lượng..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -148,7 +153,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Lô thu hoạch..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -167,16 +172,21 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Ngày nhập kho" required />
             <Controller
               control={control}
-              name="code"
+              name="inputDate"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Ngày nhập kho..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                //   disabled
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                   disabled
                 />
               )}
@@ -186,7 +196,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
 
         <Grid item xs={6} rowSpacing={2}>
           <Stack direction="column" spacing={1} mb={2} flex={1}>
-            <CFormLabel label="Trọng lượng" required />
+            <CFormLabel label="Trọng lượng nhập kho" required />
             <Controller
               control={control}
               name="acreage"
@@ -194,12 +204,11 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Trọng lượng..."
                   multiline
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
-                  type="number"
                   disabled
                 />
               )}
@@ -212,12 +221,12 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
         <CFormLabel label="Lô nhập" htmlFor="name" required />
         <Controller
           control={control}
-          name="address"
+          name="importLot"
           render={({ field, fieldState: { error } }) => (
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Lô nhập..."
               error={!!error}
               helperText={error?.message}
               disabled
@@ -232,12 +241,12 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Người nhập kho" required />
             <Controller
               control={control}
-              name="date"
+              name="warehousingPerson"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Người nhập kho..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -254,17 +263,16 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CFormLabel label="Độ ẩm" required />
             <Controller
               control={control}
-              name="weight"
+              name="humidity"
               render={({ field, fieldState: { error } }) => (
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Độ ẩm..."
                   multiline
                   rows={1}
                   error={!!error}
                   helperText={error?.message}
-                  type="number"
                   disabled
                 />
               )}
@@ -282,14 +290,18 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
               control={control}
               name="dateSale"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Ngày bán..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                 />
               )}
             />
@@ -308,7 +320,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Lô bán..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -329,7 +341,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Trọng lượng bán ra..."
               error={!!error}
               helperText={error?.message}
               type="number"
@@ -349,7 +361,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Đơn vị mua..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -370,7 +382,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Người xuất bán..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -393,7 +405,7 @@ export const MSaleForm: React.FC<IMSaleFormProps> = ({ control, create }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Độ ẩm xuất bán..."
                   multiline
                   rows={1}
                   error={!!error}

@@ -8,3 +8,4 @@ export * from "./CInputPassword";
 export * from "./CSearchInput";
 export * from "./CSwitch";
 export * from "./CDatePicker";
+export * from "./CQrcode";

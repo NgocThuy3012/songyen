@@ -56,13 +56,13 @@ export const item = {
 
   acreage: 1000,
 
-  date: "20-10-2023",
+  date: "20-09-2023",
 
   weight: 23,
 
   plot: "hds",
 
-  inputDate: "1-10-2023",
+  inputDate: "27-09-2023",
 
   importLot: "df",
 

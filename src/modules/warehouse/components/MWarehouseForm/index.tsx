@@ -8,35 +8,16 @@ import { CAutocomplete, CDatePicker, CFormLabel, CInput } from "@/controls/";
 import { IOption } from "@/types/options";
 
 import { IMWarehouseFormProps } from "./types";
+import dayjs from "dayjs";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js
 export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
   //#region Ref
-  const pageValue = useWatch({ control });
+
   //#endregion
 
   //#region Data
-  const pageQuery = useQuery({
-    queryKey: ["page-services"],
-    queryFn: () => getPageServices(),
-  });
-
-  const pageOptions: IOption[] = useMemo(() => {
-    if (pageQuery) {
-      const { data } = pageQuery;
-
-      if (data?.data?.data) {
-        return data.data.data.map((page) => ({
-          id: page.id,
-          label: page.name,
-          value: page.id,
-        }));
-      }
-    }
-
-    return [];
-  }, [pageQuery.data]);
 
   //#endregion
 
@@ -62,7 +43,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Mã cơ sở..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -84,7 +65,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Diện tích chăn nuôi..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -107,7 +88,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Địa chỉ..."
               error={!!error}
               helperText={error?.message}
               disabled
@@ -124,14 +105,19 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
               control={control}
               name="date"
               render={({ field, fieldState: { error } }) => (
-                <CInput
+                // <CInput
+                //   {...field}
+                //   id="name"
+                //   placeholder="Ngày thu hoạch..."
+                //   multiline
+                //   rows={1}
+                //   error={!!error}
+                //   helperText={error?.message}
+                //   disabled
+                // />
+                <CDatePicker
                   {...field}
-                  id="name"
-                  placeholder="Enter here..."
-                  multiline
-                  rows={1}
-                  error={!!error}
-                  helperText={error?.message}
+                  onChange={(value) => field.onChange(value)}
                   disabled
                 />
               )}
@@ -149,7 +135,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Trọng lượng..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -174,7 +160,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Lô thu hoạch..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -195,15 +181,6 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
               control={control}
               name="inputDate"
               render={({ field, fieldState: { error } }) => (
-                // <CInput
-                //   {...field}
-                //   id="name"
-                //   placeholder="Enter here..."
-                //   multiline
-                //   rows={1}
-                //   error={!!error}
-                //   helperText={error?.message}
-                // />
                 <CDatePicker
                   {...field}
                   onChange={(value) => field.onChange(value)}
@@ -223,7 +200,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Trọng lượng nhập kho..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -245,7 +222,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
             <CInput
               {...field}
               id="name"
-              placeholder="Enter here..."
+              placeholder="Lô nhập..."
               error={!!error}
               helperText={error?.message}
             />
@@ -264,7 +241,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="name"
-                  placeholder="Enter here..."
+                  placeholder="Người nhập kho..."
                   multiline
                   rows={1}
                   error={!!error}
@@ -285,7 +262,7 @@ export const MWarehouseForm: React.FC<IMWarehouseFormProps> = ({ control }) => {
                 <CInput
                   {...field}
                   id="url"
-                  placeholder="Enter here..."
+                  placeholder="Độ ẩm..."
                   multiline
                   rows={1}
                   error={!!error}

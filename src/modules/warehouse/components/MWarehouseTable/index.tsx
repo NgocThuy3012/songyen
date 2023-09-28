@@ -4,6 +4,7 @@ import { CActionsTable, CDataGrid } from "@/others/";
 
 import { IGetWarehouseResponse } from "@/types/warehouse";
 import { IMWarehouseTableProps } from "./types";
+import { CQrcode } from "@/controls/";
 
 export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
   data,
@@ -62,8 +63,18 @@ export const MWarehouseTable: React.FC<IMWarehouseTableProps> = ({
       align: "left",
     },
     {
+      field: "qrcode",
+      headerName: "xuất QRcode",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<IGetWarehouseResponse>) => (
+        <CQrcode id={params.row.id} />
+      ),
+    },
+    {
       field: "action",
-      headerName: "ACTION",
+      headerName: "",
       minWidth: 100,
       headerAlign: "center",
       align: "center",

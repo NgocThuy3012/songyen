@@ -68,12 +68,12 @@ const UpdateSalePage = () => {
   return (
     <>
       <Box mb={3}>
-        <Typography variant="page-title">Update</Typography>
+        <Typography variant="page-title">Nhập thông tin xuất bán</Typography>
       </Box>
 
       <Paper variant="wrapper">
         <form>
-          <MSaleForm control={control} create={false} />
+          <MSaleForm control={control} />
 
           <CActionsForm
             onCancel={onCancel}

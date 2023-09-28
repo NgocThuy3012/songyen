@@ -67,7 +67,7 @@ const UpdateInfoPage = () => {
   return (
     <>
       <Box mb={3}>
-        <Typography variant="page-title">Update</Typography>
+        <Typography variant="page-title">Nhập thông tin nhà yến</Typography>
       </Box>
 
       <Paper variant="wrapper">

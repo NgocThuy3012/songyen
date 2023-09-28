@@ -4,6 +4,7 @@ import { CActionsTable, CActiveTag, CDataGrid } from "@/others/";
 
 import { IMInfoTableProps } from "./types";
 import { IGetInfoResponse } from "@/types/info";
+import { CQrcode } from "@/controls/";
 
 export const MInfoTable: React.FC<IMInfoTableProps> = ({
   data,
@@ -47,8 +48,18 @@ export const MInfoTable: React.FC<IMInfoTableProps> = ({
       flex: 1,
     },
     {
+      field: "qrcode",
+      headerName: "xuất QRcode",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<IGetInfoResponse>) => (
+        <CQrcode id={params.row.id} />
+      ),
+    },
+    {
       field: "action",
-      headerName: "ACTION",
+      headerName: "",
       minWidth: 150,
       headerAlign: "center",
       align: "center",

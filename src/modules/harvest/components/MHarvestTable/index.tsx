@@ -5,6 +5,7 @@ import { CActionsTable, CActiveTag, CDataGrid } from "@/others/";
 
 import { IGetHarvestResponse } from "@/types/harvest";
 import { IMHarvestTableProps } from "./types";
+import { CQrcode } from "@/controls/";
 
 export const MHarvestTable: React.FC<IMHarvestTableProps> = ({
   data,
@@ -47,8 +48,18 @@ export const MHarvestTable: React.FC<IMHarvestTableProps> = ({
       align: "left",
     },
     {
+      field: "qrcode",
+      headerName: "xuất QRcode",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<IGetHarvestResponse>) => (
+        <CQrcode id={params.row.id} />
+      ),
+    },
+    {
       field: "action",
-      headerName: "ACTION",
+      headerName: "",
       minWidth: 100,
       headerAlign: "center",
       align: "center",

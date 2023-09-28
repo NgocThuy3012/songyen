@@ -40,7 +40,7 @@ export const item = {
 
   acreage: 1000,
 
-  date: "20-10-2023",
+  date: "20-190-2023",
 
   weight: 23,
 

@@ -1,38 +1,38 @@
-import { useState } from 'react';
-import { AddCircle, BorderColor, DeleteForever } from '@mui/icons-material';
-import { IconButton, Menu, MenuItem, Stack, Tooltip } from '@mui/material';
+import { useState } from "react";
+import { AddCircle, BorderColor, DeleteForever } from "@mui/icons-material";
+import { IconButton, Menu, MenuItem, Stack, Tooltip } from "@mui/material";
 
-import apiInstance from '@/axios/index';
+import apiInstance from "@/axios/index";
 
-import { ICActionsTableProps } from './types';
+import { ICActionsTableProps } from "./types";
 
 const MOCK_LANGUAGES = [
   {
-    id: '1',
-    code: '1',
-    label: 'Tiếng Việt',
-    abbr: 'VN',
+    id: "1",
+    code: "1",
+    label: "Tiếng Việt",
+    abbr: "VN",
     disabled: true,
   },
   {
-    id: '2',
-    code: '2',
-    label: 'Tiếng Anh',
-    abbr: 'EN',
+    id: "2",
+    code: "2",
+    label: "Tiếng Anh",
+    abbr: "EN",
     disabled: false,
   },
   {
-    id: '3',
-    code: '3',
-    label: 'Tiếng Đức',
-    abbr: 'GER',
+    id: "3",
+    code: "3",
+    label: "Tiếng Đức",
+    abbr: "GER",
     disabled: false,
   },
   {
-    id: '4',
-    code: '4',
-    label: 'Tiếng Pháp',
-    abbr: 'FR',
+    id: "4",
+    code: "4",
+    label: "Tiếng Pháp",
+    abbr: "FR",
     disabled: false,
   },
 ];
@@ -46,13 +46,13 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
   //#region Data
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-  const [selection, setSelection] = useState<string>('');
+  const [selection, setSelection] = useState<string>("");
   //#endregion
 
   //#region Event
   const onClick = (
     event: React.MouseEvent<HTMLButtonElement>,
-    selectType: string,
+    selectType: string
   ) => {
     setAnchorEl(event.currentTarget);
     setSelection(selectType);
@@ -60,9 +60,9 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
   const onClose = () => setAnchorEl(null);
 
   const onLanguageSelect = (value: string) => {
-    apiInstance.defaults.headers['Cookie'] = `language=${value}`;
+    apiInstance.defaults.headers["Cookie"] = `language=${value}`;
     // selection === 'edit' ? onEdit() : onDelete();
-    setSelection('');
+    setSelection("");
     onClose();
   };
   //#endregion
@@ -75,8 +75,8 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
         <Tooltip title="Edit">
           <IconButton
             color="warning"
-            onClick={(e) => onClick(e, 'edit')}
-            sx={{ '&:hover': { backgroundColor: 'rgb(255 197 12 / 19%)' } }}
+            onClick={(e) => onClick(e, "edit")}
+            sx={{ "&:hover": { backgroundColor: "rgb(255 197 12 / 19%)" } }}
           >
             <BorderColor />
           </IconButton>
@@ -84,9 +84,9 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
         <Tooltip title="Delete">
           <IconButton
             color="secondary"
-            onClick={(e) => onClick(e, 'delete')}
+            onClick={(e) => onClick(e, "delete")}
             disabled
-            sx={{ '&:hover': { backgroundColor: 'rgb(207 55 61 / 12%)' } }}
+            sx={{ "&:hover": { backgroundColor: "rgb(207 55 61 / 12%)" } }}
           >
             <DeleteForever />
           </IconButton>
@@ -113,7 +113,7 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
           <IconButton
             color="primary"
             onClick={onCreate}
-            sx={{ '&:hover': { backgroundColor: 'rgb(73 127 249 / 19%)' } }}
+            sx={{ "&:hover": { backgroundColor: "rgb(73 127 249 / 19%)" } }}
           >
             <AddCircle />
           </IconButton>
@@ -124,7 +124,7 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
           <IconButton
             color="warning"
             onClick={onEdit}
-            sx={{ '&:hover': { backgroundColor: 'rgb(255 197 12 / 19%)' } }}
+            sx={{ "&:hover": { backgroundColor: "rgb(255 197 12 / 19%)" } }}
           >
             <BorderColor />
           </IconButton>
@@ -135,7 +135,7 @@ export const CActionsTable: React.FC<ICActionsTableProps> = ({
           <IconButton
             color="error"
             onClick={onDelete}
-            sx={{ '&:hover': { backgroundColor: 'rgb(207 55 61 / 12%)' } }}
+            sx={{ "&:hover": { backgroundColor: "rgb(207 55 61 / 12%)" } }}
           >
             <DeleteForever />
           </IconButton>
