@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
 import { Grid, Stack } from "@mui/material";
 
-import { CFormLabel, CImageUpload, CInput, CSwitch } from "@/controls/";
+import { CFormLabel, CInput } from "@/controls/";
 
 import { IMInfoFormProps } from "./types";
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component

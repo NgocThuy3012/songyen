@@ -1,14 +1,9 @@
-import { useEffect, useMemo } from "react";
-import { Controller, useWatch } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Grid, Stack } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 
-import { getPageServices } from "@/apis/page-services.api";
-import { CAutocomplete, CDatePicker, CFormLabel, CInput } from "@/controls/";
-import { IOption } from "@/types/options";
+import { CDatePicker, CFormLabel, CInput } from "@/controls/";
 
 import { IMWarehouseFormProps } from "./types";
-import dayjs from "dayjs";
 
 //stackoverflow.com/questions/63998373/is-there-a-material-ui-based-tree-select-component
 //codesandbox.io/s/mui-tree-select-sample-easy-wujtg5?file=/index.js

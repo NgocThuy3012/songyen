@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Box, Paper, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 
-import { getDetailPost, updateBlog } from "@/apis/posts.api";
+import { Box, Paper, Typography } from "@mui/material";
+
 import { CActionsForm } from "@/controls/";
 import { ICreateWarehouseForm } from "@/types/warehouse";
 
 import { defaultValuesPost, warehouseResolver } from "../../form";
 import { MWarehouseForm } from "../../components";
-import { item } from "@/mock/warehouse";
+
 import { IGetHarvestResponse } from "@/types/harvest";
 import dayjs from "dayjs";
 import { IGetSalesResponse } from "@/types/sales";

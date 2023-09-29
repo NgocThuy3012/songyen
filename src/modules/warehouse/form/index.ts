@@ -7,7 +7,7 @@ export const defaultValuesPost: ICreateWarehouseForm = {
   code: "",
   acreage: 0,
 
-  address: 0,
+  address: "",
 
   date: "",
 

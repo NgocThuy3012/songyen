@@ -4,11 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 
 import { useNavigateQuery, useRevertQuery } from "@/hooks/";
-import { CPagination } from "@/others/index";
 
 import { MSalesTable } from "../../components/MSaleTable";
 
-import { listDataSale } from "@/mock/sale";
 import { IGetSalesResponse } from "@/types/sales";
 
 // import { MCustomersTable } from '../../components';

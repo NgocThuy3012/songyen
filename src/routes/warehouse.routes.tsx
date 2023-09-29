@@ -6,9 +6,7 @@ import { ROUTES } from "./routes";
 const ListWarehousePage = lazy(
   () => import("@/modules/warehouse/pages/ListWarehousePage")
 );
-const CreateWarehousePage = lazy(
-  () => import("@/modules/warehouse/pages/CreateWarehousePage")
-);
+
 const UpdateWarehousePage = lazy(
   () => import("@/modules/warehouse/pages/UpdateWarehousePage")
 );
@@ -17,10 +15,6 @@ export const WarehouseRoutes: RouteObject[] = [
   {
     path: ROUTES.WAREHOUSE.LIST,
     element: <ListWarehousePage />,
-  },
-  {
-    path: ROUTES.WAREHOUSE.CREATE,
-    element: <CreateWarehousePage />,
   },
   {
     path: ROUTES.WAREHOUSE.UPDATE,

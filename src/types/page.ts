@@ -1,5 +1,3 @@
-import { IFileResponse } from './files';
-
 export interface IGetPageResponse {
   id: string;
   name: string;
@@ -13,8 +11,6 @@ export interface IUpdatePageParams {
 }
 
 export interface IUpdatePageForm {
-  image: IFileResponse;
-
   name: string;
 
   description: string;
@@ -25,5 +21,4 @@ export interface IPageDetailResponse {
   id: string;
   name: string;
   description: string;
-  image: IFileResponse;
 }
