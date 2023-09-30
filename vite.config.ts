@@ -65,26 +65,26 @@ export default defineConfig(({ mode }) => {
       },
       chunkSizeWarningLimit: 1000,
     },
-    experimental: {
-      renderBuiltUrl(
-        filename: string,
-        {
-          hostId,
-          hostType,
-          type,
-        }: {
-          hostId: string;
-          hostType: "js" | "css" | "html";
-          type: "public" | "asset";
-        }
-      ) {
-        if (type === "public") {
-          return `public/${filename}`;
-        } else {
-          return `${base}/${filename}`;
-        }
-      },
-    },
+    // experimental: {
+    //   renderBuiltUrl(
+    //     filename: string,
+    //     {
+    //       hostId,
+    //       hostType,
+    //       type,
+    //     }: {
+    //       hostId: string;
+    //       hostType: "js" | "css" | "html";
+    //       type: "public" | "asset";
+    //     }
+    //   ) {
+    //     if (type === "public") {
+    //       return `public/${filename}`;
+    //     } else {
+    //       return `${base}/${filename}`;
+    //     }
+    //   },
+    // },
     module: {
       rules: [
         {
